@@ -11,7 +11,7 @@ enableProdMode();
 
 export default createServerRenderer(params => {
   const { AppServerModule, AppServerModuleNgFactory, LAZY_MODULE_MAP } = (module as any).exports;
- 
+
   const options = {
     document: params.data.originalHtml,
     url: params.url,
@@ -25,6 +25,6 @@ export default createServerRenderer(params => {
   const renderPromise = AppServerModuleNgFactory
     ? /* AoT */ renderModuleFactory(AppServerModuleNgFactory, options)
     : /* dev */ renderModule(AppServerModule, options);
-    
+
   return renderPromise.then(html => ({ html }));
 });
