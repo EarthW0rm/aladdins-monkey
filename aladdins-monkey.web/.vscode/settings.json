@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/dist-server": true,
+        "**/dist": true,
+        "**/bin": true,
+        "**/obj": true,
+        "**/*-lock.json": true,
+        "**/node_modules": true,
+        "**/.DS_Store": true
+    },
+    "editor.tabSize": 4,
+    "[typescript]": {
+        "editor.tabSize": 4
+    }
+}
