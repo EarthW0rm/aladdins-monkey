@@ -36,7 +36,7 @@
             "request": "launch",
             "sourceMaps": true,
             "url": "https://localhost:5001",
-            "webRoot": "${workspaceFolder}/ClientApp",
+            "webRoot": "${workspaceFolder}/front-app",
             "runtimeArgs": [
                 "--remote-debugging-port=9222"
             ]
