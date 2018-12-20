@@ -30,7 +30,18 @@
     "import-spacing": true,
     "no-consecutive-blank-lines": true,
     "no-reference-import": true,
-
+    "no-redundant-jsdoc": true,
+    "completed-docs": [
+        true,
+        {
+          "enums": true,
+          "functions": {"visibilities": ["exported"]},
+          "methods": { "privacies": ["public", "protected"]},
+          "properties": {
+            "tags": {"content": {"see": ["#.*"]}, "existence": ["inheritdoc"]}
+          }
+        }
+      ],
 
     "callable-types": true,
     "class-name": true,
