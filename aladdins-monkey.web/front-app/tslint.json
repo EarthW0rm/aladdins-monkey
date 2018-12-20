@@ -26,8 +26,12 @@
     "use-isnan": true,
     "max-classes-per-file": [true, 3, "exclude-class-expressions"],
     "arrow-return-shorthand": true,
+    "encoding": true,
+    "import-spacing": true,
+    "no-consecutive-blank-lines": true,
+    "no-reference-import": true,
 
-    
+
     "callable-types": true,
     "class-name": true,
     "comment-format": [
@@ -43,7 +47,6 @@
       true,
       "rxjs/Rx"
     ],
-    "import-spacing": true,
     "indent": [
       true,
       "spaces"
