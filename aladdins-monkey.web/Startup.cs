@@ -67,6 +67,12 @@ namespace dotnet_angular_ssr
                         ? new AngularCliBuilder(npmScript: "build:ssr")
                         : null;
                     options.ExcludeUrls = new[] { "/sockjs-node" };
+
+                    options.SupplyData =  (context, data) =>
+                    {
+                        Controllers.SampleDataController ctrl = new Controllers.SampleDataController();
+                        data["forecasts"] = ctrl.WeatherForecasts();
+                    };
                 });
 
                 if (env.IsDevelopment())
