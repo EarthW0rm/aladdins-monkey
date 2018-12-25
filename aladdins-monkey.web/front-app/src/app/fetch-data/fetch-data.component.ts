@@ -1,5 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { IWeatherForecast } from '../models/IWeatherForecast';
+import { WeatherForecastsService } from '../services/weather-forecasts.service';
 
 @Component({
     selector: 'app-fetch-data',
@@ -7,19 +9,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FetchDataComponent {
 
+    /** Base subscription */
+    private baseObservable: Subscription;
+
     /** List of forecasts */
-    public forecasts: WeatherForecast[];
+    public forecasts: IWeatherForecast[];
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        http.get<WeatherForecast[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result;
-        }, error => console.error(error));
+    constructor(weatherForecastsService: WeatherForecastsService) {
+        if (weatherForecastsService.forecasts && weatherForecastsService.forecasts.length === 0) {
+            this.baseObservable = weatherForecastsService.GetWeatherForecasts().subscribe(
+                (result) => {
+                    this.forecasts = result;
+                }
+                , (error) => {
+                    console.error(error);
+                }
+                , () => {
+                    console.log('Complete');
+                    this.baseObservable.unsubscribe();
+                });
+        } else {
+            this.forecasts = weatherForecastsService.forecasts;
+        }
     }
-}
-
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
 }

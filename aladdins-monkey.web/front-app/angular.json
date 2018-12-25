@@ -124,7 +124,7 @@
       }
     },
     "ssr": {
-      "root": "",
+      "root": "ssr",
       "sourceRoot": "src",
       "projectType": "application",
       "architect": {
